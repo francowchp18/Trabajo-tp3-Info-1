@@ -1,0 +1,43 @@
+#include <stdio.h>
+
+int main() {
+	int n_estudiantes;
+	float nota, suma_notas = 0.0;
+	float nota_max = 0.0, nota_min = 100.0;
+	
+	do {
+		printf("Ingrese la cantidad de estudiantes : ");
+		scanf("%d", &n_estudiantes);
+		if (n_estudiantes <= 0) {
+			printf("Error: la cantidad de estudiantes debe ser un número positivo.\n");
+		}
+	} while (n_estudiantes <= 0);
+
+	for (int i = 1; i <= n_estudiantes; i++) {
+		do {
+			printf("Ingrese la nota del estudiante %d (0 a 100): ", i);
+			scanf("%f", &nota);
+			if (nota < 0.0 || nota > 100.0) {
+				printf("Error: la nota debe estar en el rango de 0 a 100.\n");
+			}
+		} while (nota < 0.0 || nota > 100.0);
+
+		suma_notas += nota;
+
+		if (nota > nota_max) {
+			nota_max = nota;
+		}
+		if (nota < nota_min) {
+			nota_min = nota;
+		}
+	}
+	
+	float promedio = suma_notas / n_estudiantes;
+	
+	printf("Promedio de notas: %.2f\n", promedio);
+	printf("Nota más alta: %.2f\n", nota_max);
+	printf("Nota más baja: %.2f\n", nota_min);
+	
+	return 0;
+}
+
